@@ -1,0 +1,16 @@
+---
+- name: Add an apt key by id from a keyserver.
+  apt_key:
+    url: https://download.spotify.com/debian/pubkey.gpg
+    state: present
+
+- name: Add spotify repo to dep config.
+  apt_repository:
+    repo: deb http://repository.spotify.com stable non-free
+    state: present
+
+- name: Install spotify package.
+  apt:
+    name: spotify-client
+    state: present
+    update_cache: yes

@@ -1,0 +1,11 @@
+---
+- import_tasks: vscode.yml
+
+- name: Install extension
+  shell: "code --install-extension {{ item }}"
+  become: no
+  register: result
+  when:
+    - vscode_extension is defined
+  loop: "{{ vscode_extension }}"
+  changed_when: result.stdout is not search('is already installed.')

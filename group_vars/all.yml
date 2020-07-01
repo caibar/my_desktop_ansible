@@ -1,0 +1,11 @@
+user: "caibar"
+home_dir: "/home/caibar"
+
+# git
+git_username: João Caibar da Silva
+git_email: <git e-mail>
+
+# vscode
+vscode_extension:
+  - ms-vscode.go
+  - ms-azuretools.vscode-docker

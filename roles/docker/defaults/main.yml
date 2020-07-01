@@ -1,0 +1,5 @@
+---
+docker_package: docker-ce
+
+docker_compose_version: "1.26.1"
+docker_compose_path: /usr/local/bin/docker-compose

@@ -1,0 +1,17 @@
+---
+- name: Install terminator package.
+  apt:
+    name: terminator
+    state: present
+
+- name: Create config directory.
+  become: no
+  file:
+    state: directory
+    path: "{{ home_dir }}/.config/terminator/"
+
+- name: Configure terminator.
+  become: no
+  copy:
+    src: "{{ role_path }}/files/config"
+    dest: "{{ home_dir }}/.config/terminator/config"

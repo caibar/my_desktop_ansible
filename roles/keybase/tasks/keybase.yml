@@ -1,0 +1,6 @@
+---
+- name: Install keybase package.
+  apt:
+    state: present
+    deb: "https://prerelease.keybase.io/keybase_amd64.deb"
+    update_cache: yes

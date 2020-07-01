@@ -1,0 +1,37 @@
+---
+- name: Check current golang version.
+  command: go version
+  register: _golang_current_version
+  changed_when: no
+  failed_when: no
+
+- name: Delete existing golang version if it's different.
+  file:
+    path: "{{ golang_sdk_dir }}"
+    state: absent
+  when: >
+    _golang_current_version.stdout is defined
+    and golang_version not in _golang_current_version.stdout
+
+- name: Download golang archive.
+  get_url:
+    url: "https://storage.googleapis.com/golang/go{{ golang_version }}.linux-amd64.tar.gz"
+    dest: "/tmp/go{{ golang_version }}.linux-amd64.tar.gz"
+    checksum: "{{ golang_checksum }}"
+    mode: "u=rw,go=r"
+
+- name: Create golang sdk directory.
+  file:
+    path: "{{ golang_sdk_dir }}"
+    state: directory
+
+- name: Install Go language SDK.
+  unarchive:
+    src: "/tmp/go{{ golang_version }}.linux-amd64.tar.gz"
+    extra_opts: "--strip-components=1"
+    dest: "{{ golang_sdk_dir }}"
+
+- name: Add go to PATH in global profile.
+  lineinfile:
+    path: /etc/profile
+    line: "export PATH=$PATH:{{ golang_sdk_dir }}/bin"

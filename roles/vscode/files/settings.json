@@ -1,0 +1,6 @@
+{
+    "terminal.integrated.fontFamily": "DejaVu Sans Mono for Powerline",
+    "plantuml.render": "PlantUMLServer",
+    "plantuml.server": "https://www.plantuml.com/plantuml",
+    "plantuml.exportFormat": "png"
+}

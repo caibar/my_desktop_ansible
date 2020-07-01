@@ -1,0 +1,22 @@
+---
+- hosts: localhost
+  become: yes
+  become_method: sudo
+  become_user: root
+  roles:
+    - openvpn_client
+    - keepassxc
+    - keybase
+    - docker
+    - git
+    - ssh
+    - fonts
+    - oh_my_zsh
+    - terminator
+    - golang
+    - goland
+    - google_chrome
+    - vscode
+    - spotify
+    - studio3t
+    #- virtualbox

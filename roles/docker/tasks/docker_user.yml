@@ -1,0 +1,7 @@
+---
+- name: Ensure docker user are added to the docker group.
+  user:
+    name: "{{ user }}"
+    groups: docker
+    append: yes
+  notify: restart docker

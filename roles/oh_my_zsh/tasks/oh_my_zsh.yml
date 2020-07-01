@@ -1,0 +1,30 @@
+---
+- name: Install zsh.
+  apt:
+    name: zsh
+    state: present
+
+- name: Clone oh-my-zsh repo.
+  become: no
+  git:
+    repo: https://github.com/ohmyzsh/ohmyzsh
+    dest: "{{ home_dir }}/.oh-my-zsh"
+    version: master
+    force: yes
+
+- name: Configure oh-my-zsh.
+  become: no
+  copy:
+    src: "{{ role_path }}/files/zshrc"
+    dest: "{{ home_dir }}/.zshrc"
+
+- name: Comment line prompt_contex to theme agnoster.zsh-theme.
+  lineinfile:
+    path: "{{ home_dir }}/.oh-my-zsh/themes/agnoster.zsh-theme"
+    regexp: '(^  prompt_context)'
+    line: '#\1'
+    backrefs: yes
+    state: present
+
+- name: Set ZSH as default shell.
+  command: chsh -s /usr/bin/zsh {{ user }}

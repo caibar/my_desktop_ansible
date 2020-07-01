@@ -1,0 +1,9 @@
+---
+- include_tasks: docker.yml
+
+- name: Ensure handlers are notified now to avoid firewall conflicts.
+  meta: flush_handlers
+
+- include_tasks: docker_compose.yml
+
+- include_tasks: docker_user.yml

@@ -1,0 +1,19 @@
+---
+- name: Install git package.
+  apt:
+    name: git
+    state: present
+
+- name: Configure gitconfig global.
+  become: no
+  template:
+    src: gitconfig.j2
+    dest: "{{ home_dir }}/.gitconfig"
+    mode: 0600
+
+- name: Configure gitignore global.
+  become: no
+  copy:
+    src: "{{ role_path }}/files/gitignore"
+    dest: "{{ home_dir }}/.gitignore"
+    mode: 0600

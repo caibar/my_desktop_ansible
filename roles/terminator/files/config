@@ -1,0 +1,25 @@
+[global_config]
+  enabled_plugins = LaunchpadCodeURLHandler, APTURLHandler, Logger, LaunchpadBugURLHandler
+  focus = mouse
+  scroll_tabbar = True
+  title_transmit_bg_color = "#888a85"
+[keybindings]
+[layouts]
+  [[default]]
+    [[[child1]]]
+      parent = window0
+      profile = default
+      type = Terminal
+    [[[window0]]]
+      parent = ""
+      type = Window
+[plugins]
+[profiles]
+  [[default]]
+    background_darkness = 0.75
+    background_type = transparent
+    cursor_color = "#aaaaaa"
+    font = Ubuntu Mono derivative Powerline 12
+    scrollback_infinite = True
+    scrollbar_position = hidden
+    use_system_font = False

@@ -1,0 +1,39 @@
+---
+- name: Install o ssh.
+  apt:
+    name: openssh-server
+    state: present
+
+- name: Configure ssh config.
+  become: no
+  copy:
+    src: "{{ role_path }}/files/config"
+    dest: "{{ home_dir }}/.ssh/config"
+    mode: 0664
+
+- name: Configure ssh id_rsa.
+  become: no
+  copy:
+    src: "{{ role_path }}/files/id_rsa"
+    dest: "{{ home_dir }}/.ssh/id_rsa"
+    mode: 0600
+
+- name: Configure ssh id_rsa.pub.
+  become: no
+  copy:
+    src: "{{ role_path }}/files/id_rsa.pub"
+    dest: "{{ home_dir }}/.ssh/id_rsa.pub"
+    mode: 0600
+
+- name: Configure ssh GCP service_account.
+  become: no
+  copy:
+    src: "{{ role_path }}/files/joao-caibar-service-account.json"
+    dest: "{{ home_dir }}/.ssh/joao-caibar-service-account.json"
+    mode: 0664
+
+- name: Ensure SSH is started.
+  service:
+    name: ssh
+    state: restarted
+    enabled: yes

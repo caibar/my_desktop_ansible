@@ -1,0 +1,25 @@
+export ZSH=$HOME/.oh-my-zsh
+ZSH_THEME="agnoster"
+plugins=(
+  history-substring-search
+  colored-man-pages
+  docker
+  ssh-agent
+  git
+  go
+)
+source $ZSH/oh-my-zsh.sh
+
+alias vpn="sudo openvpn --config /etc/openvpn/client/client.conf"
+
+function gke-get-credentials-genesis-qa() {
+  export SSH_PRIVATE_KEY=$(cat ~/.ssh/id_rsa)
+  export GOOGLE_CREDENTIALS=$(cat ~/.ssh/joao-caibar-service-account.json)
+  make gke-get-credentials group=simm project=simm-k8s-qa-6004 system=k8s resource=gke-10-222-1 env=qa user=joao.caibar
+}
+
+function gke-get-credentials-genesis-prod() {
+  export SSH_PRIVATE_KEY=$(cat ~/.ssh/id_rsa)
+  export GOOGLE_CREDENTIALS=$(cat ~/.ssh/joao-caibar-service-account.json)
+  make gke-get-credentials group=simm project=simm-k8s-prod-2007 system=k8s resource=gke-10-202-1 env=prod user=joao.caibar
+}

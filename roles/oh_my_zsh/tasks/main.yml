@@ -1,0 +1,2 @@
+---
+- import_tasks: oh_my_zsh.yml
